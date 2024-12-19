@@ -79,7 +79,11 @@ public class MenuPrincipal {
                         String novoNome = scanner.nextLine();
                         usuarioBO.atualizarUsuario(new Usuario(idUsuario, novoNome, null));
                         break;
-                        
+                    case 8:
+                        System.out.print("ID do Usuário: ");
+                        int idUsuarioDelete = scanner.nextInt();
+                        usuarioBO.deletarUsuario(idUsuarioDelete);
+                        break;
                         
                   
                         
