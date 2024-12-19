@@ -57,12 +57,12 @@ public void testDeletarUsuario() {
 
             usuarioDAO.deletarUsuario(id);
 
-    if (usuarioDAO.listarUsuarios().size() == 0) {
-                System.out.println("testDeletarUsuario: PASSOU");
-            } else {
-                System.out.println("testDeletarUsuario: FALHOU");
+        if (usuarioDAO.listarUsuarios().size() == 0) {
+                    System.out.println("testDeletarUsuario: PASSOU");
+                } else {
+                    System.out.println("testDeletarUsuario: FALHOU");
+                }
+            } catch (SQLException e) {
+                System.out.println("testDeletarUsuario: FALHOU - Exceção: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.out.println("testDeletarUsuario: FALHOU - Exceção: " + e.getMessage());
         }
-    }
