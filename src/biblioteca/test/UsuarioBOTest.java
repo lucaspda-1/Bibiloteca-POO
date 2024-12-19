@@ -16,7 +16,7 @@ public class UsuarioBOTest {
     public void setUp() {
         // Configuração inicial, se necessário
     }
-}
+
 
 public void testAdicionarUsuario() {
     try {
@@ -100,4 +100,5 @@ public static void main(String[] args) {
     test.testDeletarUsuario();
     test.testAtualizarUsuarioInvalido();
     test.testDeletarUsuarioInvalido();
+ }
 }
