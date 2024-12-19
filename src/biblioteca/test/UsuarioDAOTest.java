@@ -39,3 +39,12 @@ public void testAtualizarUsuario() {
             Usuario usuarioAtualizado = new Usuario(id, "Maria Silva", "67890");
             usuarioDAO.atualizarUsuario(usuarioAtualizado);
             
+        if ("Maria Silva".equals(usuarioDAO.listarUsuarios().get(0).getNome())) {
+                        System.out.println("testAtualizarUsuario: PASSOU");
+                    } else {
+                        System.out.println("testAtualizarUsuario: FALHOU");
+                    }
+                } catch (SQLException e) {
+                    System.out.println("testAtualizarUsuario: FALHOU - Exceção: " + e.getMessage());
+                }
+            }
