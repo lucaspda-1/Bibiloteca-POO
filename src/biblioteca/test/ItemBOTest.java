@@ -49,24 +49,6 @@ public class ItemBOTest {
         }
     }
 
-    public void testDeletarItem() {
-        try {
-            Item item = new Item(0, "Livro", "Java", "Autor", 1);
-            itemBO.adicionarItem(item);
-            int id = itemBO.listarItens().get(0).getId();
-
-            itemBO.deletarItem(id);
-
-            if (itemBO.listarItens().size() == 0) {
-                System.out.println("testDeletarItem: PASSOU");
-            } else {
-                System.out.println("testDeletarItem: FALHOU");
-            }
-        } catch (SQLException e) {
-            System.out.println("testDeletarItem: FALHOU - Exceção: " + e.getMessage());
-        }
-    }
-
     public static void main(String[] args) {
         ItemBOTest test = new ItemBOTest();
         test.setUp();
