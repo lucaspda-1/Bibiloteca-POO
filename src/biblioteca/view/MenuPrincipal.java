@@ -71,6 +71,14 @@ public class MenuPrincipal {
                         List<Usuario> usuarios = usuarioBO.listarUsuarios();
                         usuarios.forEach(usuario -> System.out.println(usuario.getId() + " - " + usuario.getNome()));
                         break;
+                    case 7:
+                        System.out.print("ID do Usuário: ");
+                        int idUsuario = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print("Novo Nome: ");
+                        String novoNome = scanner.nextLine();
+                        usuarioBO.atualizarUsuario(new Usuario(idUsuario, novoNome, null));
+                        break;
                         
                         
                   
