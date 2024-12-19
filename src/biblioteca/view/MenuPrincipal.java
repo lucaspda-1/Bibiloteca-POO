@@ -55,6 +55,11 @@ public class MenuPrincipal {
                         String novoTitulo = scanner.nextLine();
                         itemBO.atualizarItem(new Item(idItem, null, novoTitulo, null, 0));
                         break;
+                    case 4:
+                        System.out.print("ID do Item: ");
+                        int idDelete = scanner.nextInt();
+                        itemBO.deletarItem(idDelete);
+                        break;
                         
                         
                   
