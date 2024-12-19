@@ -14,7 +14,7 @@ public class MenuPrincipal {
         Scanner scanner = new Scanner(System.in);
         ItemBO itemBO = new ItemBO();
         UsuarioBO usuarioBO = new UsuarioBO();
-        
+
         while (true) {
             System.out.println("\n=== MENU PRINCIPAL ===");
             System.out.println("1. Adicionar Item");
@@ -30,7 +30,7 @@ public class MenuPrincipal {
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer
 
-         try {
+            try {
                 switch (opcao) {
                     case 1:
                         System.out.print("Tipo: ");
@@ -67,7 +67,7 @@ public class MenuPrincipal {
                         String matricula = scanner.nextLine();
                         usuarioBO.adicionarUsuario(new Usuario(0, nome, matricula));
                         break;
-                     case 6:
+                    case 6:
                         List<Usuario> usuarios = usuarioBO.listarUsuarios();
                         usuarios.forEach(usuario -> System.out.println(usuario.getId() + " - " + usuario.getNome()));
                         break;
@@ -84,8 +84,9 @@ public class MenuPrincipal {
                         int idUsuarioDelete = scanner.nextInt();
                         usuarioBO.deletarUsuario(idUsuarioDelete);
                         break;
-                     case 0:
+                    case 0:
                         System.out.println("Saindo...");
+                        scanner.close(); // Fechar o Scanner ao sair
                         return;
                     default:
                         System.out.println("Opção inválida!");
@@ -96,9 +97,3 @@ public class MenuPrincipal {
         }
     }
 }
-                        
-                  
-                        
-                    
-
-             
