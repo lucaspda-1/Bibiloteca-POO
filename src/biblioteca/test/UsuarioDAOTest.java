@@ -15,3 +15,17 @@ public class UsuarioDAOTest {
     public void setUp() {
         // Configuração inicial, se necessário
     }
+
+public void testAdicionarUsuario() {
+        try {
+            Usuario usuario = new Usuario(0, "João Silva", "12345");
+            usuarioDAO.adicionarUsuario(usuario);
+            if (usuarioDAO.listarUsuarios().size() == 1) {
+                System.out.println("testAdicionarUsuario: PASSOU");
+            } else {
+                System.out.println("testAdicionarUsuario: FALHOU");
+            }
+        } catch (SQLException e) {
+            System.out.println("testAdicionarUsuario: FALHOU - Exceção: " + e.getMessage());
+        }
+    }
