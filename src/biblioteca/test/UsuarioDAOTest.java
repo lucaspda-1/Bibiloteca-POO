@@ -66,3 +66,12 @@ public void testDeletarUsuario() {
                 System.out.println("testDeletarUsuario: FALHOU - Exceção: " + e.getMessage());
             }
         }
+
+public static void main(String[] args) {
+        UsuarioDAOTest test = new UsuarioDAOTest();
+        test.setUp();
+        test.testAdicionarUsuario();
+        test.testAtualizarUsuario();
+        test.testDeletarUsuario();
+    }
+}
