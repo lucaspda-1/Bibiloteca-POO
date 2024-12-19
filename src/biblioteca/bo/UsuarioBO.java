@@ -22,4 +22,11 @@ public class UsuarioBO {
     public List<Usuario> listarUsuarios() throws SQLException {
         return usuarioDAO.listarUsuarios();
     }
+    // Método para atualizar um usuário
+    public void atualizarUsuario(Usuario usuario) throws SQLException, UsuarioNaoEncontradoException {
+        if (usuario.getId() <= 0) {
+            throw new UsuarioNaoEncontradoException("ID do usuário inválido para atualização.");
+        }
+        usuarioDAO.atualizarUsuario(usuario);
+    }
 
