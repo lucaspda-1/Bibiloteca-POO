@@ -14,3 +14,18 @@ public class MenuPrincipal {
         Scanner scanner = new Scanner(System.in);
         ItemBO itemBO = new ItemBO();
         UsuarioBO usuarioBO = new UsuarioBO();
+        
+        while (true) {
+            System.out.println("\n=== MENU PRINCIPAL ===");
+            System.out.println("1. Adicionar Item");
+            System.out.println("2. Listar Itens");
+            System.out.println("3. Atualizar Item");
+            System.out.println("4. Deletar Item");
+            System.out.println("5. Adicionar Usuário");
+            System.out.println("6. Listar Usuários");
+            System.out.println("7. Atualizar Usuário");
+            System.out.println("8. Deletar Usuário");
+            System.out.println("0. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer
