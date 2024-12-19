@@ -50,3 +50,21 @@ public void testAtualizarUsuario() {
         System.out.println("testAtualizarUsuario: FALHOU - Exceção: " + e.getMessage());
     }
 }
+
+public void testDeletarUsuario() {
+    try {
+        Usuario usuario = new Usuario(0, "Carlos Oliveira", "54321");
+        usuarioBO.adicionarUsuario(usuario);
+        int id = usuarioBO.listarUsuarios().get(0).getId();
+
+        usuarioBO.deletarUsuario(id);
+
+        if (usuarioBO.listarUsuarios().size() == 0) {
+            System.out.println("testDeletarUsuario: PASSOU");
+        } else {
+            System.out.println("testDeletarUsuario: FALHOU");
+        }
+    } catch (SQLException | UsuarioNaoEncontradoException e) {
+        System.out.println("testDeletarUsuario: FALHOU - Exceção: " + e.getMessage());
+    }
+}
