@@ -56,3 +56,13 @@ public void testDeletarUsuario() {
             int id = usuarioDAO.listarUsuarios().get(0).getId();
 
             usuarioDAO.deletarUsuario(id);
+
+    if (usuarioDAO.listarUsuarios().size() == 0) {
+                System.out.println("testDeletarUsuario: PASSOU");
+            } else {
+                System.out.println("testDeletarUsuario: FALHOU");
+            }
+        } catch (SQLException e) {
+            System.out.println("testDeletarUsuario: FALHOU - Exceção: " + e.getMessage());
+        }
+    }
