@@ -48,3 +48,11 @@ public void testAtualizarUsuario() {
                     System.out.println("testAtualizarUsuario: FALHOU - Exceção: " + e.getMessage());
                 }
             }
+
+public void testDeletarUsuario() {
+        try {
+            Usuario usuario = new Usuario(0, "Carlos Oliveira", "54321");
+            usuarioDAO.adicionarUsuario(usuario);
+            int id = usuarioDAO.listarUsuarios().get(0).getId();
+
+            usuarioDAO.deletarUsuario(id);
