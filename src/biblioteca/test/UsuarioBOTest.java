@@ -31,3 +31,22 @@ public void testAdicionarUsuario() {
         System.out.println("testAdicionarUsuario: FALHOU - Exceção: " + e.getMessage());
     }
 }
+
+public void testAtualizarUsuario() {
+    try {
+        Usuario usuario = new Usuario(0, "Maria Souza", "67890");
+        usuarioBO.adicionarUsuario(usuario);
+        int id = usuarioBO.listarUsuarios().get(0).getId();
+
+        Usuario usuarioAtualizado = new Usuario(id, "Maria Silva", "67890");
+        usuarioBO.atualizarUsuario(usuarioAtualizado);
+
+        if ("Maria Silva".equals(usuarioBO.listarUsuarios().get(0).getNome())) {
+            System.out.println("testAtualizarUsuario: PASSOU");
+        } else {
+            System.out.println("testAtualizarUsuario: FALHOU");
+        }
+    } catch (SQLException | UsuarioNaoEncontradoException e) {
+        System.out.println("testAtualizarUsuario: FALHOU - Exceção: " + e.getMessage());
+    }
+}
