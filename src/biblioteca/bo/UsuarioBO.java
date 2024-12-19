@@ -30,3 +30,12 @@ public class UsuarioBO {
         usuarioDAO.atualizarUsuario(usuario);
     }
 
+    // Método para deletar um usuário
+    public void deletarUsuario(int id) throws SQLException, UsuarioNaoEncontradoException {
+        if (id <= 0) {
+            throw new UsuarioNaoEncontradoException("ID do usuário inválido para exclusão.");
+        }
+        usuarioDAO.deletarUsuario(id);
+    }
+}
+
