@@ -91,3 +91,17 @@ public void testDeletarUsuarioInvalido() {
         System.out.println("testDeletarUsuarioInvalido: FALHOU - Exceção: " + e.getMessage());
     }
 }
+
+public void setUp() {
+    // Configuração inicial, se necessário
+}
+
+public static void main(String[] args) {
+    UsuarioBOTest test = new UsuarioBOTest();
+    test.setUp();
+    test.testAdicionarUsuario();
+    test.testAtualizarUsuario();
+    test.testDeletarUsuario();
+    test.testAtualizarUsuarioInvalido();
+    test.testDeletarUsuarioInvalido();
+}
