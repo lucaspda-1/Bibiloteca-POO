@@ -68,3 +68,15 @@ public void testDeletarUsuario() {
         System.out.println("testDeletarUsuario: FALHOU - Exceção: " + e.getMessage());
     }
 }
+
+public void testAtualizarUsuarioInvalido() {
+    try {
+        Usuario usuario = new Usuario(-1, "Teste", "11111");
+        usuarioBO.atualizarUsuario(usuario);
+        System.out.println("testAtualizarUsuarioInvalido: FALHOU - Não lançou exceção");
+    } catch (UsuarioNaoEncontradoException e) {
+        System.out.println("testAtualizarUsuarioInvalido: PASSOU - Exceção lançada");
+    } catch (SQLException e) {
+        System.out.println("testAtualizarUsuarioInvalido: FALHOU - Exceção: " + e.getMessage());
+    }
+}
