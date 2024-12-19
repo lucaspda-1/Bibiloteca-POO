@@ -60,6 +60,13 @@ public class MenuPrincipal {
                         int idDelete = scanner.nextInt();
                         itemBO.deletarItem(idDelete);
                         break;
+                    case 5:
+                        System.out.print("Nome do Usuário: ");
+                        String nome = scanner.nextLine();
+                        System.out.print("Matrícula: ");
+                        String matricula = scanner.nextLine();
+                        usuarioBO.adicionarUsuario(new Usuario(0, nome, matricula));
+                        break;
                         
                         
                   
