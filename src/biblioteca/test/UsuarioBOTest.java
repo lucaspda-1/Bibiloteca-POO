@@ -92,10 +92,6 @@ public void testDeletarUsuarioInvalido() {
     }
 }
 
-public void setUp() {
-    // Configuração inicial, se necessário
-}
-
 public static void main(String[] args) {
     UsuarioBOTest test = new UsuarioBOTest();
     test.setUp();
