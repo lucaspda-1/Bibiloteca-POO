@@ -29,3 +29,19 @@ public class MenuPrincipal {
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer
+
+         try {
+                switch (opcao) {
+                    case 1:
+                        System.out.print("Tipo: ");
+                        String tipo = scanner.nextLine();
+                        System.out.print("Título: ");
+                        String titulo = scanner.nextLine();
+                        System.out.print("Autor: ");
+                        String autor = scanner.nextLine();
+                        System.out.print("Edição: ");
+                        int edicao = scanner.nextInt();
+                        itemBO.adicionarItem(new Item(0, tipo, titulo, autor, edicao));
+                        break;
+
+             
