@@ -67,6 +67,10 @@ public class MenuPrincipal {
                         String matricula = scanner.nextLine();
                         usuarioBO.adicionarUsuario(new Usuario(0, nome, matricula));
                         break;
+                     case 6:
+                        List<Usuario> usuarios = usuarioBO.listarUsuarios();
+                        usuarios.forEach(usuario -> System.out.println(usuario.getId() + " - " + usuario.getNome()));
+                        break;
                         
                         
                   
