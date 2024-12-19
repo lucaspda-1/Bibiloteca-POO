@@ -84,6 +84,18 @@ public class MenuPrincipal {
                         int idUsuarioDelete = scanner.nextInt();
                         usuarioBO.deletarUsuario(idUsuarioDelete);
                         break;
+                     case 0:
+                        System.out.println("Saindo...");
+                        return;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+            } catch (SQLException | UsuarioNaoEncontradoException e) {
+                System.err.println("Erro: " + e.getMessage());
+            }
+        }
+    }
+}
                         
                   
                         
