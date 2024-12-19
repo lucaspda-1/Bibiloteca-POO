@@ -29,3 +29,13 @@ public void testAdicionarUsuario() {
             System.out.println("testAdicionarUsuario: FALHOU - Exceção: " + e.getMessage());
         }
     }
+
+public void testAtualizarUsuario() {
+        try {
+            Usuario usuario = new Usuario(0, "Maria Souza", "67890");
+            usuarioDAO.adicionarUsuario(usuario);
+            int id = usuarioDAO.listarUsuarios().get(0).getId();
+
+            Usuario usuarioAtualizado = new Usuario(id, "Maria Silva", "67890");
+            usuarioDAO.atualizarUsuario(usuarioAtualizado);
+            
