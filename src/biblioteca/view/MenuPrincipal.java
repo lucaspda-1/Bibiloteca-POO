@@ -47,6 +47,15 @@ public class MenuPrincipal {
                         List<Item> itens = itemBO.listarItens();
                         itens.forEach(item -> System.out.println(item.getId() + " - " + item.getTitulo()));
                         break;
+                    case 3:
+                        System.out.print("ID do Item: ");
+                        int idItem = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print("Novo Título: ");
+                        String novoTitulo = scanner.nextLine();
+                        itemBO.atualizarItem(new Item(idItem, null, novoTitulo, null, 0));
+                        break;
+                        
                         
                   
                         
