@@ -43,5 +43,13 @@ public class MenuPrincipal {
                         int edicao = scanner.nextInt();
                         itemBO.adicionarItem(new Item(0, tipo, titulo, autor, edicao));
                         break;
+                    case 2:
+                        List<Item> itens = itemBO.listarItens();
+                        itens.forEach(item -> System.out.println(item.getId() + " - " + item.getTitulo()));
+                        break;
+                        
+                  
+                        
+                    
 
              
