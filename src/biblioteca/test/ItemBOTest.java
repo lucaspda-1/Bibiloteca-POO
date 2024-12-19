@@ -52,12 +52,12 @@ public class ItemBOTest {
     public void testDeletarItem() {
         try {
             Item item = new Item(0, "Livro", "Java", "Autor", 1);
-            itemDAO.adicionarItem(item);
-            int id = itemDAO.listarItens().get(0).getId();
+            itemBO.adicionarItem(item);
+            int id = itemBO.listarItens().get(0).getId();
 
-            itemDAO.deletarItem(id);
+            itemBO.deletarItem(id);
 
-            if (itemDAO.listarItens().size() == 0) {
+            if (itemBO.listarItens().size() == 0) {
                 System.out.println("testDeletarItem: PASSOU");
             } else {
                 System.out.println("testDeletarItem: FALHOU");
