@@ -1,7 +1,10 @@
 package biblioteca.test;
 
 import biblioteca.bo.UsuarioBO;
+import biblioteca.exceptions.UsuarioExistenteException;
+import biblioteca.exceptions.UsuarioInvalidoException;
 import biblioteca.exceptions.UsuarioNaoEncontradoException;
+import biblioteca.exceptions.UsuarioSemPermissaoException;
 import biblioteca.model.Usuario;
 
 import java.sql.SQLException;
@@ -26,7 +29,7 @@ public class UsuarioBOTest {
             } else {
                 System.out.println("testAdicionarUsuario: FALHOU");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | UsuarioExistenteException | UsuarioInvalidoException e) {
             System.out.println("testAdicionarUsuario: FALHOU - Exceção: " + e.getMessage());
         }
     }
@@ -34,7 +37,7 @@ public class UsuarioBOTest {
     public void testAtualizarUsuario() {
         try {
             Usuario usuario = new Usuario(0, "Maria Souza", "67890");
-            usuarioBO.adicionarUsuario(usuario);
+            usuarioBO.adicionarUsuario(usuario); // Aqui pode lançar UsuarioExistenteException
             int id = usuarioBO.listarUsuarios().get(0).getId();
 
             Usuario usuarioAtualizado = new Usuario(id, "Maria Silva", "67890");
@@ -45,7 +48,7 @@ public class UsuarioBOTest {
             } else {
                 System.out.println("testAtualizarUsuario: FALHOU");
             }
-        } catch (SQLException | UsuarioNaoEncontradoException e) {
+        } catch (SQLException | UsuarioNaoEncontradoException | UsuarioInvalidoException | UsuarioExistenteException e) {
             System.out.println("testAtualizarUsuario: FALHOU - Exceção: " + e.getMessage());
         }
     }
@@ -53,7 +56,7 @@ public class UsuarioBOTest {
     public void testDeletarUsuario() {
         try {
             Usuario usuario = new Usuario(0, "Carlos Oliveira", "54321");
-            usuarioBO.adicionarUsuario(usuario);
+            usuarioBO.adicionarUsuario(usuario); // Aqui pode lançar UsuarioExistenteException e UsuarioInvalidoException
             int id = usuarioBO.listarUsuarios().get(0).getId();
 
             usuarioBO.deletarUsuario(id);
@@ -63,7 +66,7 @@ public class UsuarioBOTest {
             } else {
                 System.out.println("testDeletarUsuario: FALHOU");
             }
-        } catch (SQLException | UsuarioNaoEncontradoException e) {
+        } catch (SQLException | UsuarioNaoEncontradoException | UsuarioSemPermissaoException | UsuarioExistenteException | UsuarioInvalidoException e) {
             System.out.println("testDeletarUsuario: FALHOU - Exceção: " + e.getMessage());
         }
     }
@@ -73,7 +76,7 @@ public class UsuarioBOTest {
             Usuario usuario = new Usuario(-1, "Teste", "11111");
             usuarioBO.atualizarUsuario(usuario);
             System.out.println("testAtualizarUsuarioInvalido: FALHOU - Não lançou exceção");
-        } catch (UsuarioNaoEncontradoException e) {
+        } catch (UsuarioNaoEncontradoException | UsuarioInvalidoException e) {
             System.out.println("testAtualizarUsuarioInvalido: PASSOU - Exceção lançada");
         } catch (SQLException e) {
             System.out.println("testAtualizarUsuarioInvalido: FALHOU - Exceção: " + e.getMessage());
@@ -84,7 +87,7 @@ public class UsuarioBOTest {
         try {
             usuarioBO.deletarUsuario(-1);
             System.out.println("testDeletarUsuarioInvalido: FALHOU - Não lançou exceção");
-        } catch (UsuarioNaoEncontradoException e) {
+        } catch (UsuarioNaoEncontradoException | UsuarioSemPermissaoException e) {
             System.out.println("testDeletarUsuarioInvalido: PASSOU - Exceção lançada");
         } catch (SQLException e) {
             System.out.println("testDeletarUsuarioInvalido: FALHOU - Exceção: " + e.getMessage());
