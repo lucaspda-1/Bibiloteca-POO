@@ -1,7 +1,10 @@
 package biblioteca.model;
 
 import biblioteca.bo.UsuarioBO;
+import biblioteca.exceptions.UsuarioExistenteException;
+import biblioteca.exceptions.UsuarioInvalidoException;
 import biblioteca.exceptions.UsuarioNaoEncontradoException;
+import biblioteca.exceptions.UsuarioSemPermissaoException;
 
 import java.sql.SQLException;
 
@@ -38,7 +41,7 @@ public class Usuario extends Entidade implements Persistivel {
         try {
             UsuarioBO usuarioBO = new UsuarioBO();
             usuarioBO.adicionarUsuario(this);
-        } catch (SQLException e) {
+        } catch (SQLException | UsuarioExistenteException | UsuarioInvalidoException e) {
             System.err.println("Erro ao salvar usuário: " + e.getMessage());
         }
     }
@@ -48,7 +51,7 @@ public class Usuario extends Entidade implements Persistivel {
         try {
             UsuarioBO usuarioBO = new UsuarioBO();
             usuarioBO.atualizarUsuario(this);
-        } catch (SQLException | UsuarioNaoEncontradoException e) {
+        } catch (SQLException | UsuarioNaoEncontradoException | UsuarioInvalidoException e) {
             System.err.println("Erro ao atualizar usuário: " + e.getMessage());
         }
     }
@@ -58,7 +61,7 @@ public class Usuario extends Entidade implements Persistivel {
         try {
             UsuarioBO usuarioBO = new UsuarioBO();
             usuarioBO.deletarUsuario(this.getId());
-        } catch (SQLException | UsuarioNaoEncontradoException e) {
+        } catch (SQLException | UsuarioNaoEncontradoException | UsuarioSemPermissaoException e) {
             System.err.println("Erro ao deletar usuário: " + e.getMessage());
         }
     }
