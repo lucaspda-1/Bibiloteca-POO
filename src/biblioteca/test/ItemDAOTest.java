@@ -2,7 +2,6 @@ package biblioteca.test;
 
 import biblioteca.dao.ItemDAO;
 import biblioteca.model.Item;
-
 import java.sql.SQLException;
 
 public class ItemDAOTest {
