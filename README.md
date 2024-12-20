@@ -21,7 +21,7 @@ Os seguintes requisitos foram atendidos para avaliação do projeto:
 - Estruturação do projeto em **camadas**: View, BO, VO, DAO.
 - Implementação de **Collections** para manipulação eficiente de dados.
 - Uso de **Testes Unitários** automatizados para validar regras de negócio e operações de banco de dados.
-- Integração com banco de dados (SQLite), com suporte a operações `insert`, `update`, `delete` e `select`.
+- Integração com banco de dados (usamos o SQLite), com suporte a operações `insert`, `update`, `delete` e `select`.
 - Tratamento de erros por meio de **exceções personalizadas**.
 
 ## Estrutura do Projeto
@@ -36,22 +36,28 @@ O projeto está organizado da seguinte forma:
     - `ItemDAO.java`: Acesso a dados para itens da biblioteca.
     - `UsuarioDAO.java`: Acesso a dados para usuários da biblioteca.
   - **exceptions**: Classes de exceções personalizadas.
+    - `ItemDAOException.java`: Exceção lançada para erros relacionados ao DAO de itens.
+    - `ItemDuplicadoException.java`: Exceção lançada quando um item duplicado é detectado.
+    - `ItemExistenteException.java`: Exceção lançada quando um item já existe.
+    - `ItemInvalidoException.java`: Exceção lançada quando um item é inválido.
     - `ItemNaoEncontradoException.java`: Exceção lançada quando um item não é encontrado.
+    - `ItemSemPermissaoException.java`: Exceção lançada quando um item não pode ser acessado devido a permissões.
+    - `UsuarioExistenteException.java`: Exceção lançada quando um usuário já existe.
+    - `UsuarioInvalidoException.java`: Exceção lançada quando um usuário é inválido.
     - `UsuarioNaoEncontradoException.java`: Exceção lançada quando um usuário não é encontrado.
+    - `UsuarioSemPermissaoException.java`: Exceção lançada quando um usuário não pode ser acessado devido a permissões.
   - **model**: Classes de modelo.
     - `Entidade.java`: Classe base para entidades.
     - `Item.java`: Representa um item da biblioteca.
     - `Persistivel.java`: Interface para entidades que podem ser persistidas.
     - `Usuario.java`: Representa um usuário da biblioteca.
-  - **view**: Classes relacionadas à interface do usuário.
-    - `ConexaoBanco.java`: Classe para gerenciar conexões com o banco de dados.
-    - `InicializadorBanco.java`: Classe para inicializar o banco de dados.
-
   - **test**: Contém os testes unitários para as classes do projeto.
     - `ItemBOTest.java`: Testes para a classe `ItemBO`.
     - `ItemDAOTest.java`: Testes para a classe `ItemDAO`.
     - `UsuarioBOTest.java`: Testes para a classe `UsuarioBO`.
     - `UsuarioDAOTest.java`: Testes para a classe `UsuarioDAO`.
+  - **view**: Classes relacionadas à interface do usuário.
+    - `MenuPrincipal.java`: Classe principal para iniciar a aplicação.
 
 - **lib**: Contém as bibliotecas externas utilizadas no projeto.
   - `sqlite-jdbc-3.47.1.0.jar`: Driver JDBC para SQLite.
