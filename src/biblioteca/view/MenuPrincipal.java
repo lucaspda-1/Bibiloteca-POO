@@ -2,7 +2,10 @@ package biblioteca.view;
 
 import biblioteca.bo.ItemBO;
 import biblioteca.bo.UsuarioBO;
+import biblioteca.exceptions.UsuarioExistenteException;
+import biblioteca.exceptions.UsuarioInvalidoException;
 import biblioteca.exceptions.UsuarioNaoEncontradoException;
+import biblioteca.exceptions.UsuarioSemPermissaoException;
 import biblioteca.model.Item;
 import biblioteca.model.Usuario;
 import java.sql.SQLException;
@@ -91,7 +94,7 @@ public class MenuPrincipal {
                     default:
                         System.out.println("Opção inválida!");
                 }
-            } catch (SQLException | UsuarioNaoEncontradoException e) {
+            } catch (SQLException | UsuarioNaoEncontradoException | UsuarioExistenteException | UsuarioInvalidoException | UsuarioSemPermissaoException e) {
                 System.err.println("Erro: " + e.getMessage());
             }
         }
