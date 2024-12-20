@@ -17,8 +17,20 @@ public class ItemBOTest {
         // Configuração inicial, se necessário
     }
 
+    public void tearDown() {
+        // Limpa todos os itens após cada teste
+        try {
+            for (Item item : itemBO.listarItens()) {
+                itemBO.deletarItem(item.getId());
+            }
+        } catch (SQLException | ItemNaoEncontradoException e) {
+            System.out.println("Erro ao limpar os itens: " + e.getMessage());
+        }
+    }
+
     public void testAdicionarItem() {
         try {
+            // Adiciona um item com título "Java"
             Item item = new Item(0, "Livro", "Java", "Autor", 1);
             itemBO.adicionarItem(item);
             if (itemBO.listarItens().size() == 1) {
@@ -33,14 +45,16 @@ public class ItemBOTest {
 
     public void testAtualizarItem() throws ItemDuplicadoException {
         try {
-            Item item = new Item(0, "Livro", "Java", "Autor", 1);
+            // Adiciona um item com título "Python"
+            Item item = new Item(0, "Livro", "Python", "Outro Autor", 1);
             itemBO.adicionarItem(item);
             int id = itemBO.listarItens().get(0).getId();
 
-            Item itemAtualizado = new Item(id, "Livro", "Python", "Outro Autor", 2);
+            // Atualiza o item para um novo título
+            Item itemAtualizado = new Item(id, "Livro", "Python Atualizado", "Outro Autor", 2);
             itemBO.atualizarItem(itemAtualizado);
 
-            if ("Python".equals(itemBO.listarItens().get(0).getTitulo())) {
+            if ("Python Atualizado".equals(itemBO.listarItens().get(0).getTitulo())) {
                 System.out.println("testAtualizarItem: PASSOU");
             } else {
                 System.out.println("testAtualizarItem: FALHOU");
@@ -52,10 +66,12 @@ public class ItemBOTest {
 
     public void testDeletarItem() throws ItemDuplicadoException, ItemInvalidoException {
         try {
-            Item item = new Item(0, "Livro", "Java", "Autor", 1);
+            // Adiciona um item com título "C#"
+            Item item = new Item(0, "Livro", "C#", "Autor", 1);
             itemBO.adicionarItem(item);
             int id = itemBO.listarItens().get(0).getId();
 
+            // Deleta o item
             itemBO.deletarItem(id);
 
             if (itemBO.listarItens().size() == 0) {
@@ -71,8 +87,17 @@ public class ItemBOTest {
     public static void main(String[] args) throws ItemDuplicadoException, ItemInvalidoException {
         ItemBOTest test = new ItemBOTest();
         test.setUp();
+
+        // Executa o teste de adicionar item
         test.testAdicionarItem();
+        test.tearDown(); // Limpa os dados após o teste
+
+        // Executa o teste de atualizar item
         test.testAtualizarItem();
+        test.tearDown(); // Limpa os dados após o teste
+
+        // Executa o teste de deletar item
         test.testDeletarItem();
+        test.tearDown(); // Limpa os dados após o teste
     }
 }
