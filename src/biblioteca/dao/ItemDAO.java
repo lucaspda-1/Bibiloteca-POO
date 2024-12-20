@@ -11,6 +11,30 @@ import java.util.List;
 
 public class ItemDAO {
 
+    // Verificar existência por título
+    public boolean verificarExistencia(String titulo) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM Itens WHERE titulo = ?";
+        try (Connection conexao = ConexaoBanco.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, titulo);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt(1) > 0;
+        }
+    }
+
+    // Verificar existência por ID
+    public boolean verificarExistencia(int id) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM Itens WHERE id = ?";
+        try (Connection conexao = ConexaoBanco.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt(1) > 0;
+        }
+    }
+
     // CREATE
     public void adicionarItem(Item item) throws SQLException {
         String sql = "INSERT INTO Itens (tipo, titulo, autor, edicao) VALUES (?, ?, ?, ?)";

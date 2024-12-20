@@ -1,6 +1,7 @@
 package biblioteca.model;
 
 import biblioteca.bo.ItemBO;
+import biblioteca.exceptions.*;
 import java.sql.SQLException;
 
 public class Item extends Entidade implements Persistivel {
@@ -56,7 +57,7 @@ public class Item extends Entidade implements Persistivel {
         try {
             ItemBO itemBO = new ItemBO();
             itemBO.adicionarItem(this);
-        } catch (SQLException e) {
+        } catch (SQLException | ItemDuplicadoException | ItemInvalidoException e) {
             System.err.println("Erro ao salvar item: " + e.getMessage());
         }
     }
@@ -66,7 +67,7 @@ public class Item extends Entidade implements Persistivel {
         try {
             ItemBO itemBO = new ItemBO();
             itemBO.atualizarItem(this);
-        } catch (SQLException e) {
+        } catch (SQLException | ItemNaoEncontradoException | ItemInvalidoException e) {
             System.err.println("Erro ao atualizar item: " + e.getMessage());
         }
     }
@@ -76,7 +77,7 @@ public class Item extends Entidade implements Persistivel {
         try {
             ItemBO itemBO = new ItemBO();
             itemBO.deletarItem(this.getId());
-        } catch (SQLException e) {
+        } catch (SQLException | ItemNaoEncontradoException e) {
             System.err.println("Erro ao deletar item: " + e.getMessage());
         }
     }

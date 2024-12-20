@@ -2,6 +2,7 @@ package biblioteca.test;
 
 import biblioteca.bo.ItemBO;
 import biblioteca.model.Item;
+import biblioteca.exceptions.*;
 
 import java.sql.SQLException;
 
@@ -25,12 +26,12 @@ public class ItemBOTest {
             } else {
                 System.out.println("testAdicionarItem: FALHOU");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ItemDuplicadoException | ItemInvalidoException e) {
             System.out.println("testAdicionarItem: FALHOU - Exceção: " + e.getMessage());
         }
     }
 
-    public void testAtualizarItem() {
+    public void testAtualizarItem() throws ItemDuplicadoException {
         try {
             Item item = new Item(0, "Livro", "Java", "Autor", 1);
             itemBO.adicionarItem(item);
@@ -44,12 +45,12 @@ public class ItemBOTest {
             } else {
                 System.out.println("testAtualizarItem: FALHOU");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ItemNaoEncontradoException | ItemInvalidoException e) {
             System.out.println("testAtualizarItem: FALHOU - Exceção: " + e.getMessage());
         }
     }
 
-    public void testDeletarItem() {
+    public void testDeletarItem() throws ItemDuplicadoException, ItemInvalidoException {
         try {
             Item item = new Item(0, "Livro", "Java", "Autor", 1);
             itemBO.adicionarItem(item);
@@ -62,12 +63,12 @@ public class ItemBOTest {
             } else {
                 System.out.println("testDeletarItem: FALHOU");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ItemNaoEncontradoException e) {
             System.out.println("testDeletarItem: FALHOU - Exceção: " + e.getMessage());
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ItemDuplicadoException, ItemInvalidoException {
         ItemBOTest test = new ItemBOTest();
         test.setUp();
         test.testAdicionarItem();
